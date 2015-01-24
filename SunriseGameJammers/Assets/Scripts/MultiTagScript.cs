@@ -9,7 +9,7 @@ public class MultiTagScript : MonoBehaviour
 
 	public bool objectHasTag (Tag tagToCheckFor)
 	{
-			if ((tagToCheckFor == null) || (objectTags.Length == 0)) {
+			if ((objectTags.Length == 0)) {
 					return false;
 			}
 			foreach (Tag curTag in objectTags) {
