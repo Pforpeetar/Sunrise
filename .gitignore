@@ -6,6 +6,10 @@ Library/
 SunriseGameJammers/Library/
 SunriseGameJammers/*.csproj
 SunriseGameJammers/*.sln
+SunriseGameJammers\*.csproj
+SunriseGameJammers\*.sln
+\*.sln
+\*.csproj
 *.csproj
 *.sln
 
