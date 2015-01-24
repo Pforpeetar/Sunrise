@@ -3,6 +3,7 @@ using System.Collections;
 
 public class GameManager : MonoBehaviour {
 
+	public GameObject ihatepeter;
 	// Use this for initialization
 	void Start () {
 	
