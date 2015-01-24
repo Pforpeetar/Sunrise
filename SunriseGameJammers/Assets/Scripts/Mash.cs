@@ -8,6 +8,7 @@ public class Mash : MonoBehaviour {
 	public Light spotlight;			//Spotlight object in the scene
 	public float mashDuration;		//How long can the player mash?
 	public int pressesToWin;		//How much presses needed to pass
+	public LevelManager lvlmanager;
 
 	private int timesPressed = 0;	//Counter for # of times pressed
 	private float currentTime;
@@ -54,17 +55,20 @@ public class Mash : MonoBehaviour {
 
 		}
 
-		//Akuma mode ended, lights back on, check win/lose
+		//Akuma mode ended, lights back on
 		if (currentTime > endTime) {
 			spotlight.intensity = 8;
+		}
 
+		//1 second delay after above, check win/lose
+		if (currentTime > endTime + 1.0f) {
 			//Check win
 			if (timesPressed >= pressesToWin) {
-
+				lvlmanager.CompleteLevel();
 			}
 			//Else lose
 			else {
-
+				lvlmanager.FailLevel();
 			}
 		}
 	}
