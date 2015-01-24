@@ -3,6 +3,7 @@ using System.Collections;
 
 public class HoldRelease : MonoBehaviour {
 	public LevelManager levMan;
+	public float slideSpeed;
 	public GameObject curryWeapon;
 	private GameObject curryInstance;
 	public GameObject slider;
@@ -29,7 +30,7 @@ public class HoldRelease : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (Input.GetButton ("Action") && !end) {
-			slideAmount+= 5;
+			slideAmount+= slideSpeed;
 			sliderUpdate();
 			//Debug.Log("Slide Amount: " + slideAmount);
 			if (slideAmount > 100) {
