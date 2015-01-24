@@ -4,6 +4,8 @@
 Temp/
 Library/
 Sunrise Game Jammers/Library/
+*.csproj
+*.sln
 
 # ===================================== #
 # Visual Studio / MonoDevelop generated #
