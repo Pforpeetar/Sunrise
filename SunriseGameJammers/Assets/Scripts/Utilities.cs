@@ -5,6 +5,7 @@ using System;
 
 public static class Utilities
 {
+	static GUIStyle levelDisplayStyle;
 
 	/*
 	 * Checks passed in Game object to see if any of it's tags are of the requested value
@@ -16,5 +17,21 @@ public static class Utilities
 		return false;
 	}
 
+	/*
+	 * This is all just a workaround to make up for my bullshit prefab not working.
+	 * 
+	 */ 
+	public static GUIStyle LevelDisplay(GUIStyle daStyle)
+	{
+		if (levelDisplayStyle == null)
+		{
+			levelDisplayStyle = daStyle;
+			return daStyle;
+		}
+		else
+		{
+			return levelDisplayStyle;
+		}
+	}
 }
 

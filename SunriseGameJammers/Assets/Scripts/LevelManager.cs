@@ -6,10 +6,11 @@ public class LevelManager : MonoBehaviour
 
 		private bool levelComplete;
 		private bool levelFailed;
+		public GUIStyle displayStyle;
 		// Use this for initialization
 		void Start ()
 		{
-	
+				displayStyle = Utilities.LevelDisplay(displayStyle);
 				levelComplete = false;
 				levelFailed = false;
 		}
@@ -28,12 +29,12 @@ public class LevelManager : MonoBehaviour
 				}
 		}
 
-		public void CompleteLevel ()
+		public void CompleteLevel () //called by external script when level is complete
 		{
 				levelComplete = true;
 		}
 
-		public void FailLevel ()
+	public void FailLevel () //called by external script when user messed up and fails level
 		{
 				levelFailed = true;
 		}
@@ -41,15 +42,19 @@ public class LevelManager : MonoBehaviour
 		void OnGUI ()
 		{
 				if (levelComplete) {
-						GUI.Label (new Rect (50, 50, 100, 100), "Level Complete!");
-				}
+						GUI.Label (new Rect (Screen.width/4, Screen.height/30, Screen.width/2, Screen.height/10), "Level Complete!",displayStyle);
+			GUI.Label (new Rect (Screen.width/4, Screen.height - Screen.height/30, Screen.width/2, Screen.height/100), "Press Action to Advance...",displayStyle);
+
+		}
 				if (levelFailed) {
-						GUI.Label (new Rect (50, 50, 100, 100), "Level Failed...");
-				}
+			GUI.Label (new Rect (Screen.width/4, Screen.height/30, Screen.width/2, Screen.height/100), "Level Failed...",displayStyle);
+			GUI.Label (new Rect (Screen.width/4, Screen.height - Screen.height/30, Screen.width/2, Screen.height/100), "Press Action to Try Again.",displayStyle);
+
+		}
 		}
 
 		void OnLevelWasLoaded(int level)
 	{
-		Debug.Log ("Level " + Application.loadedLevel + " loaded");
+		//Debug.Log ("Level " + Application.loadedLevel + " loaded");
 	}
 }
