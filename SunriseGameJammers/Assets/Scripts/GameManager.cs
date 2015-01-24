@@ -4,7 +4,7 @@ using System.Collections;
 public class GameManager : MonoBehaviour {
 
 	public GameObject ihatepeter;
-	public GameObject ilovebogut;
+	//public GameObject ilovebogut;
 	// Use this for initialization
 	void Start () {
 		Debug.Log ("I love bogut");
