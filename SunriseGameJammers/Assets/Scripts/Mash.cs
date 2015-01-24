@@ -45,11 +45,11 @@ public class Mash : MonoBehaviour {
 		bool mashCheck = false;
 		if (endTime - currentTime < mashDuration && endTime - currentTime > 0.0f) {
 			mashCheck = true;
+			spotlight.intensity = 0; //Just in-case we missed it above (Which it will)
 		}
 
 		//If pushing "Action" and mashCheck == true...
 		if (Input.GetButtonDown ("Action") && mashCheck) {
-			spotlight.intensity = 0; //Just in-case we missed it above (Which it will)
 			timesPressed++;
 			Debug.Log (timesPressed);
 
