@@ -11,7 +11,7 @@ public class LevelManager : MonoBehaviour
 		{
 	
 				levelComplete = false;
-				levelFailed = true;
+				levelFailed = false;
 		}
 	
 		// Update is called once per frame
