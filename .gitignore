@@ -3,7 +3,9 @@
 # =============== #
 Temp/
 Library/
-Sunrise Game Jammers/Library/
+SunriseGameJammers/Library/
+SunriseGameJammers/*.csproj
+SunriseGameJammers/*.sln
 *.csproj
 *.sln
 
@@ -15,6 +17,8 @@ obj/
 *.svd
 *.userprefs
 /*.csproj
+*.csproj
+*.sln
 *.pidb
 *.suo
 /*.sln
