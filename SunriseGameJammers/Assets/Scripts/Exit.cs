@@ -24,7 +24,6 @@ public class Exit : MonoBehaviour
 						collInfo.BroadcastMessage("LevelDone");
 						collInfo.gameObject.rigidbody2D.velocity = new Vector2 (0, 0);
 						if (mainCamera.rigidbody2D) {
-								Debug.Log("STOP");
 								mainCamera.rigidbody2D.velocity = new Vector2 (0, 0);
 						}
 
