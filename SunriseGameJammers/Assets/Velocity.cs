@@ -16,7 +16,11 @@ public class Velocity : MonoBehaviour {
 		if (!shouldStop) {
 	rigidbody2D.velocity = new Vector2(velocity,0);
 		animator = (Animator)GetComponent ("Animator");
-		animator.SetBool("Run", true);
+		if (rigidbody2D.velocity.x > 0) {
+				animator.SetBool("Run", true);
+			} else if (rigidbody2D.velocity.x < 0) {
+				animator.SetBool("eRun", true);
+			}
 		}
 	}
 
@@ -25,6 +29,7 @@ public class Velocity : MonoBehaviour {
 		shouldStop = true;
 		rigidbody2D.velocity = new Vector2(0,0);
 		animator.SetBool("Run", false);
+		animator.SetBool("eRun", false);
 
 	}
 }
