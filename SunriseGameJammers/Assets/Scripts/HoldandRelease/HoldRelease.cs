@@ -9,12 +9,14 @@ public class HoldRelease : MonoBehaviour {
 	public GameObject slider;
 	public GameObject minIndicator;
 	public GameObject maxIndicator;
+	public float minArea;
+	public float maxArea;
+	public float areaOffset;
 	private SpriteRenderer sliderBar; //slider bar sprite to be used
 	private Vector3 sliderVector; //Vector of slider
 	private float sliderScale; //Scale relative to duration of button held down
 	private float slideAmount;
-	public float minArea;
-	public float maxArea;
+
 	private Animator animator;
 
 	// Use this for initialization
@@ -43,15 +45,15 @@ public class HoldRelease : MonoBehaviour {
 		if (Input.GetButtonUp ("Action")) {
 			animator.SetBool("Shoot", true);
 
-			if (slideAmount < minArea) {
-				launchProjectile(5f, 0f, 1f);
+			if (slideAmount < minArea - areaOffset) {
+				launchProjectile(5f, -1f, 2f);
 				slideAmount = 0;
 			} 
-			else if(slideAmount > maxArea) {
-				launchProjectile(10f, 5f, 0f);
+			else if(slideAmount > maxArea + areaOffset) {
+				launchProjectile(10f, 5f, 0.5f);
 				slideAmount = 0;
 			}
-			else if (slideAmount >= minArea && slideAmount <= maxArea) {
+			else if (slideAmount >= minArea - areaOffset && slideAmount <= maxArea + areaOffset) {
 				//Debug.Log("Hit! ");
 				animator.SetBool("Shoot", true);
 				launchProjectile(10f, 0, 0);
@@ -79,10 +81,10 @@ public class HoldRelease : MonoBehaviour {
 	//launch projectile takes in a parameter xVel, yVel to calculate x and y velocities. gScale used to apply gravity if need be.
 	void launchProjectile(float xVel, float yVel, float gScale) {
 		//spawns projectile at location of script's gameobject
-		curryInstance = (GameObject)GameObject.Instantiate (curryWeapon, gameObject.transform.position, Quaternion.identity);
+		curryInstance = (GameObject)GameObject.Instantiate (curryWeapon, new Vector3(gameObject.transform.position.x, gameObject.transform.position.y + 0.5f), Quaternion.identity);
 		curryInstance.rigidbody2D.velocity = new Vector2(xVel, yVel);
 		curryInstance.rigidbody2D.gravityScale = gScale;
-		Destroy(curryInstance, 1f);
+		Destroy(curryInstance, 2f);
 	}
 
 	void disableShootAnim() {
