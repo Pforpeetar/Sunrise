@@ -50,7 +50,7 @@ public class Credits : MonoBehaviour {
 		for (int i = 0; i < currNames.Length; i++) {
 			GUI.Label(new Rect (Screen.width/2-50,100+i*25,100,50),currNames[i],creditWordStyle);
 		}
-		GUI.Label(new Rect (65,Screen.height - 65,Screen.width/3,50),"Press Action (space) for Main Menu",creditWord2);
+		GUI.Label(new Rect (Screen.width/2-50,Screen.height - 65,100,50),"Action (space) for Main Menu",creditWord2);
 	}
 	/**
 	 * Since we draw the credit info based on the value of the index counter,
