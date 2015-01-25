@@ -16,9 +16,11 @@ public class QTE : MonoBehaviour
 		public GameObject player;
 		public GameObject enemy;
 		public Texture2D blackscreen;
+		
 		// Use this for initialization
 		void Start ()
 		{
+		Debug.Log("doing nothing");
 				//lManager.FailLevel();
 				currentTime = 0f;
 				QTEactive = false;
