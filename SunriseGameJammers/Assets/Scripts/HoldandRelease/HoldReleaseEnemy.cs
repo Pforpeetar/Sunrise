@@ -28,6 +28,7 @@ public class HoldReleaseEnemy : MonoBehaviour {
 			gameObject.collider2D.enabled = false;
 			run = false;
 			audio.Play();
+			animator.SetBool("Dead", true);
 			Destroy (gameObject, 1f);
 		} 
 		if (Utilities.hasMatchingTag(Tag.Player, coll.gameObject)) {
