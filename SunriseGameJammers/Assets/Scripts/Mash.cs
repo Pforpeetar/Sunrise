@@ -11,6 +11,7 @@ public class Mash : MonoBehaviour {
 	public float fadeDuration;		//How long will it take to fade to black?
 	public int pressesToWin;		//How much presses needed to pass the level?
 	public float winForce;			//Force onto enemy when player wins (WHEEEEEEEEE!!!!)
+	public float winForceSpin;		//Torque onto enemy when player wins
 	public LevelManager lvlmanager;
 	public GameObject mashSlash;
 	public GameObject fader;
@@ -99,6 +100,14 @@ public class Mash : MonoBehaviour {
 						Vector2 newDir = enemy.gameObject.transform.position - transform.position;
 						newDir.Normalize ();
 						enemy.gameObject.rigidbody2D.AddForce(newDir * winForce);
+						//Add torque, enemy on left side gets positive torque
+						if (enemy.gameObject.transform.position.x < 0) {
+							enemy.gameObject.rigidbody2D.AddTorque(winForceSpin);
+						}
+						else {
+							enemy.gameObject.rigidbody2D.AddTorque(-winForceSpin);
+						}
+
 					}
 					else { //Lose
 						//Get vector facing towards the player current position
