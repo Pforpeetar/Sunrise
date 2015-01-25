@@ -49,7 +49,7 @@ public class MainMenu : MonoBehaviour {
 	void OnGUI()
 	{
 		GUI.DrawTexture(new Rect(0,0,Screen.width,Screen.height), background);
-		GUI.Label(new Rect(Screen.width/4,Screen.height/30,Screen.width/2,Screen.height/3),"SUNRISE",gameNameFont);
+		GUI.Label(new Rect(Screen.width/4,Screen.height/30,Screen.width/2,Screen.height/3),"SAMURAI 13",gameNameFont);
 		if (drawTheThing)
 		{
 		//By alternating the boolean, message will dissapear and reappear thus looking like it's flickering.
