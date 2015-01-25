@@ -42,7 +42,7 @@ public class HoldRelease : MonoBehaviour {
 		//Once arrow/action button is release, trigger shooting animation and fire a projectile
 		if (Input.GetButtonUp ("Action")) {
 			animator.SetBool("Shoot", true);
-
+			audio.Play();
 			if (slideAmount < minArea - areaOffset) {
 				launchProjectile(5f, -1f, 2f);
 				slideAmount = 0;
@@ -53,7 +53,7 @@ public class HoldRelease : MonoBehaviour {
 			}
 			else if (slideAmount >= minArea - areaOffset && slideAmount <= maxArea + areaOffset) {
 				//Debug.Log("Hit! ");
-				animator.SetBool("Shoot", true);
+				//animator.SetBool("Shoot", true);
 				launchProjectile(10f, 0, 0);
 				slideAmount = 0;
 				//end = true;
