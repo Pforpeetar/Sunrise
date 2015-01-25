@@ -19,6 +19,8 @@ public class QTE : MonoBehaviour
 		public GameObject fader;
 		private bool fadeActive;
 		private bool peterYoucanOnlyPressItOnceForThisStage;
+		public AudioClip slash;
+		public AudioClip death;
 		// Use this for initialization
 		void Start ()
 		{
@@ -70,6 +72,11 @@ public class QTE : MonoBehaviour
 				float fadeDuration = 0;
 				GameObject temp = (GameObject)Instantiate (mashSlash, new Vector3 (0, 0, 0), Quaternion.Euler (0, 0, 0));
 				temp.transform.localScale = new Vector3 (4, 4, 1);
+				if (audio&&slash)
+				{
+					audio.PlayOneShot(slash,1);
+					audio.PlayOneShot(slash,1);
+				}
 				GameObject temp2 = (GameObject)Instantiate (mashSlash, new Vector3 (0, 0, 0), Quaternion.Euler (0, 0, 0));
 				temp2.transform.localScale = new Vector3 (-4, 4, 1);
 				Invoke ("JudgeLevel", 2f);
@@ -82,6 +89,11 @@ public class QTE : MonoBehaviour
 				}
 				player.BroadcastMessage ("Stop");
 				enemy.BroadcastMessage ("Stop");
+				if (audio && death)
+				{
+					audio.PlayOneShot(death,.3f);
+					audio.PlayOneShot(death,.3f);
+				}
 				if (lvlComplete) {
 						enemy.transform.Rotate (new Vector3 (0, 0, 90));
 				} else {
