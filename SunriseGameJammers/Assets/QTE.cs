@@ -95,9 +95,13 @@ public class QTE : MonoBehaviour
 					audio.PlayOneShot(death,.3f);
 				}
 				if (lvlComplete) {
-						enemy.transform.Rotate (new Vector3 (0, 0, 90));
+						//enemy.transform.Rotate (new Vector3 (0, 0, 90));
+			Animator animator = (Animator)enemy.gameObject.GetComponent ("Animator");
+			animator.SetBool("Dead",true);					
 				} else {
-						player.transform.Rotate (new Vector3 (0, 0, -90));
+					//	player.transform.Rotate (new Vector3 (0, 0, -90));
+			Animator animator = (Animator)player.gameObject.GetComponent ("Animator");
+			animator.SetBool("Dead",true);
 				}
 		}
 
