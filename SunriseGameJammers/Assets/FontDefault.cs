@@ -5,8 +5,9 @@ public class FontDefault : MonoBehaviour {
 
 	public GUIStyle levelDisplayFont;
 	// Use this for initialization
-	void Start () {
+	void Awake () {
 		Utilities.LevelDisplay(levelDisplayFont);
+		Debug.Log("font default");
 	}
 	
 	// Update is called once per frame

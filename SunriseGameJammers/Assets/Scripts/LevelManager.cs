@@ -11,6 +11,7 @@ public class LevelManager : MonoBehaviour
 		void Start ()
 		{
 				displayStyle = Utilities.LevelDisplay(displayStyle);
+		Debug.Log("what");
 				levelComplete = false;
 				levelFailed = false;
 		}
