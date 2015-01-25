@@ -18,6 +18,10 @@ public class MainMenu : MonoBehaviour {
 			Invoke("NextLevel",1);
 			InvokeRepeating("TryFlickerEffect",0,.075f);
 		}
+		if (Input.GetButtonDown("Credits"))
+		{
+			Application.LoadLevel("Credits");
+		}
 	}
 
 	void TryFlickerEffect()
@@ -35,8 +39,9 @@ public class MainMenu : MonoBehaviour {
 		if (drawTheThing)
 		{
 		//By alternating the boolean, message will dissapear and reappear thus looking like it's flickering.
-		GUI.Label(new Rect(Screen.width/4,4*Screen.height/5,Screen.width/2,Screen.height/7),"Press Space to Play",pressPlayPrompt);
-	
+		GUI.Label(new Rect(Screen.width/4,3.5f*Screen.height/5,Screen.width/2,Screen.height/7),"Press Space to Play",pressPlayPrompt);
+		GUI.Label(new Rect(Screen.width/4,4*Screen.height/5,Screen.width/2,Screen.height/7),"Press C for Credits",pressPlayPrompt);
+
 		}
 }
 }
