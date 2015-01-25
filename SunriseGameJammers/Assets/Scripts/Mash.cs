@@ -16,8 +16,14 @@ public class Mash : MonoBehaviour {
 	public GameObject mashSlash;
 	public GameObject fader;
 	public GameObject enemies;
+	//Audio
+	public AudioClip slashSFX;
+	private float lowPitchRange = 0.75f;
+	private float highPitchRange = 1.5f;
+	private float lowVolRange = 0.8f;
 
-	public int timesPressed = 0;	//Counter for # of times pressed, set public for camera
+	//I should be using Time.deltaTime instead...check shmup notes
+	public int timesPressed = 0;	//Counter for # of times pressed, public for camera
 	public float currentTime;		//public for camera
 	public float endTime;			//public for camera
 	private float startLightFade;
@@ -81,6 +87,10 @@ public class Mash : MonoBehaviour {
 			Instantiate(mashSlash, newPos, newRot);
 			//Counter Debug
 			Debug.Log (timesPressed);
+			//SFX
+			audio.pitch = Random.Range (lowPitchRange,highPitchRange);
+			float hitVol = Random.Range (lowVolRange, 1.0f);
+			audio.PlayOneShot(slashSFX,hitVol);
 		}
 
 		//Akuma mode ended, lights back on
@@ -134,4 +144,5 @@ public class Mash : MonoBehaviour {
 			}
 		}
 	}
+
 }
