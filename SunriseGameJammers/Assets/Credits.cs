@@ -18,7 +18,7 @@ public class Credits : MonoBehaviour {
 		{
 			{ "Sunrise Design Team" , new string[]{"Peter Pham", "Omari Straker", "Carl Lee", "Travis Tran"}},
 			{ "Programmers" , new string[]{"Carl Lee", "Peter Pham", "Omari Straker"}},
-			{ "Art Assets" , new string[]{"Travis Tran"}},
+			{ "Art Assets" , new string[]{"Travis Tran", "\"Sword Slash\"-RPG Maker VX"}},
 			{ "Additional Thanks" , new string[]{"SJSU Game Dev Club","Global Game Jam 2015"}},
 		};
 		keys = new List<string>(credits.Keys); //store keys in a seperate array for easier reference
