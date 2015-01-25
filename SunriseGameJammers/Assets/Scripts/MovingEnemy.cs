@@ -30,6 +30,7 @@ public class MovingEnemy : MonoBehaviour {
 			coll.rigidbody2D.velocity = new Vector2(0,0);
 			run = false;
 			//Destroy(coll.gameObject, 1f);
+			audio.Play();
 			levMan.FailLevel();
 		}
 	}
