@@ -17,9 +17,9 @@ public class Mash : MonoBehaviour {
 	public GameObject fader;
 	public GameObject enemies;
 
-	private int timesPressed = 0;	//Counter for # of times pressed
-	private float currentTime;
-	private float endTime;
+	public int timesPressed = 0;	//Counter for # of times pressed, set public for camera
+	public float currentTime;		//public for camera
+	public float endTime;			//public for camera
 	private float startLightFade;
 	private float endLightFade;
 
