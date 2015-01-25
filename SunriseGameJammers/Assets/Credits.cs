@@ -19,6 +19,11 @@ public class Credits : MonoBehaviour {
 			{ "Sunrise Design Team" , new string[]{"Peter Pham", "Omari Straker", "Carl Lee", "Travis Tran"}},
 			{ "Programmers" , new string[]{"Carl Lee", "Peter Pham", "Omari Straker"}},
 			{ "Art Assets" , new string[]{"Travis Tran", "\"Sword Slash\"-RPG Maker VX"}},
+			{ "Music" , new string[]{"'Chanter' && 'Our Story Begins'", "Kevin MacLeod (incompetech.com)", "Licensed under", "Creative Commons: By Attribution 3.0", "http://creativecommons.org/licenses/by/3.0"}},
+			{ "Sound Effects" , new string[]{"This game uses these sounds from freesound:", "rough grunt by Reitanna", "( http://www.freesound.org/people/Reitanna/ )", "sword 02 by nextmaking", "( http://www.freesound.org/people/nextmaking )"
+					, "death blood splatter by minian89", "http://www.freesound.org/people/minian89"
+						, "katana1 by Taira Komori", "( http://www.freesound.org/people/Taira%20Komori"
+					, "bow by Hanbaal", "( http://www.freesound.org/people/Hanbaal )"}},
 			{ "Additional Thanks" , new string[]{"SJSU Game Dev Club","Global Game Jam 2015"}},
 		};
 		keys = new List<string>(credits.Keys); //store keys in a seperate array for easier reference
