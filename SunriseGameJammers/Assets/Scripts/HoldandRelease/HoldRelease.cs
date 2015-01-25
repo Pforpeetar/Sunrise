@@ -35,9 +35,7 @@ public class HoldRelease : MonoBehaviour {
 			animator.SetBool("DrawArrow", true);
 			slideAmount+= slideSpeed;
 			sliderUpdate();
-			//Debug.Log("Slide Amount: " + slideAmount);
 			if (slideAmount >= 105) {
-				//Debug.Log("TOO HIGH");
 				slideAmount = 0;
 			}
 		}
