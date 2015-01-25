@@ -7,9 +7,11 @@ public class MainMenu : MonoBehaviour {
 	public GUIStyle gameNameFont;
 	public GUIStyle pressPlayPrompt;
 	private bool drawTheThing;
+	private bool drawTheThing2;
 	// Use this for initialization
 	void Start () {
 		drawTheThing = true; //draw the "Press Start" prompt by default
+		drawTheThing2 = true; //same with credits prompt
 	}
 	// Update is called once per frame
 	void Update () {
@@ -20,7 +22,9 @@ public class MainMenu : MonoBehaviour {
 		}
 		if (Input.GetButtonDown("Credits"))
 		{
-			Application.LoadLevel("Credits");
+			Invoke("GoToCredits",1);
+			InvokeRepeating("TryFlickerEffect2",0,.075f);
+
 		}
 	}
 
@@ -28,9 +32,19 @@ public class MainMenu : MonoBehaviour {
 	{
 		drawTheThing = !drawTheThing; //flip the boolean to control whether or not text is being drawn on the screen
 	}
+	void TryFlickerEffect2()
+	{
+		drawTheThing2 = !drawTheThing2; //flip the boolean to control whether or not text is being drawn on the screen
+	}
+
 	void NextLevel()
 	{
 		Application.LoadLevel(Application.loadedLevel+1);
+	}
+
+	void GoToCredits()
+	{
+		Application.LoadLevel("Credits");
 	}
 	void OnGUI()
 	{
@@ -40,7 +54,10 @@ public class MainMenu : MonoBehaviour {
 		{
 		//By alternating the boolean, message will dissapear and reappear thus looking like it's flickering.
 		GUI.Label(new Rect(Screen.width/4,3.5f*Screen.height/5,Screen.width/2,Screen.height/7),"Press Space to Play",pressPlayPrompt);
-		GUI.Label(new Rect(Screen.width/4,4*Screen.height/5,Screen.width/2,Screen.height/7),"Press C for Credits",pressPlayPrompt);
+		}
+		if (drawTheThing2)
+		{
+			GUI.Label(new Rect(Screen.width/4,4*Screen.height/5,Screen.width/2,Screen.height/7),"Press C for Credits",pressPlayPrompt);
 
 		}
 }
