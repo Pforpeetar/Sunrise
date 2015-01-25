@@ -39,7 +39,7 @@ public class TextCutScene : MonoBehaviour
 						currentLine = 0;
 						currText = "";
 						updateNPC (false); //sets all the booleans to display
-						Invoke("NextLevel",2);
+						Invoke("NextLevel",1f);
 					}
 				} else if (textIsScrolling) {
 					//display full line
