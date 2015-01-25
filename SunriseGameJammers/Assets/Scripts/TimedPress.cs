@@ -9,6 +9,9 @@ public class TimedPress : MonoBehaviour {
 	public LevelManager lManager;
 	private Animator animator;
 	private bool grounded;
+	private float lowPitchRange = 0.75f;
+	private float highPitchRange = 1.25f;
+	public AudioClip jump;
 	// Use this for initialization
 	void Start () {
 		rigidbody2D.velocity = new Vector2(speed,rigidbody2D.velocity.y);
@@ -36,6 +39,8 @@ public class TimedPress : MonoBehaviour {
 				grounded = false;
 				animator.SetBool("Run",false);
 				animator.SetBool("Jump",true);
+				audio.pitch = Random.Range (lowPitchRange,highPitchRange);
+				audio.PlayOneShot(jump);
 			}
 			if (transform.position.x < cam.transform.position.x-5)
 			{

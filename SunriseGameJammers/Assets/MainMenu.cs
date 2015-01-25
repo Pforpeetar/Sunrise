@@ -17,11 +17,13 @@ public class MainMenu : MonoBehaviour {
 	void Update () {
 		if (Input.GetButtonDown("Action"))
 		{
+			audio.Play();
 			Invoke("NextLevel",1);
 			InvokeRepeating("TryFlickerEffect",0,.075f);
 		}
 		if (Input.GetButtonDown("Credits"))
 		{
+			audio.Play();
 			Invoke("GoToCredits",1);
 			InvokeRepeating("TryFlickerEffect2",0,.075f);
 
