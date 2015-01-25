@@ -15,7 +15,9 @@ public class QTE : MonoBehaviour
 		public Texture2D backgroundImage;
 		public GameObject player;
 		public GameObject enemy;
-		public Texture2D blackscreen;
+		public GameObject mashSlash;
+		public GameObject fader;
+		private bool fadeActive;
 		
 		// Use this for initialization
 		void Start ()
@@ -25,6 +27,9 @@ public class QTE : MonoBehaviour
 				QTEactive = false;
 				lvlComplete = false;
 				upperBoundsTime = QTEresponseTime + timeBeforeQTE + humanLeniency;
+				Color newA = new Color (fader.renderer.material.color.r, fader.renderer.material.color.g, fader.renderer.material.color.b, 0.0f);
+				fader.renderer.material.color = newA;
+				fadeActive = false;
 		}
 	
 		// Update is called once per frame
@@ -39,22 +44,52 @@ public class QTE : MonoBehaviour
 				if (QTEactive) {
 						if (Input.GetButtonDown ("Action")) {
 								lvlComplete = true;
-								Invoke ("FinishLevel", 2f);
 						}
 				}
-				if (currentTime > upperBoundsTime + 1) {
+				if ((currentTime > upperBoundsTime +.25f) && (!fadeActive)) {
+					fadeActive = true;
+					StartCoroutine(FadeScreenThenUnfade());
+		
+		}}
 
-						if (!lvlComplete) {
-								lManager.FailLevel ();
-						} else {
-						}
-				}
-		}
-
-		void FinishLevel ()
+		void JudgeLevel ()
 		{
-				lManager.CompleteLevel ();
+			if (lvlComplete) {
+			lManager.CompleteLevel ();
 		}
+		else
+		{
+			lManager.FailLevel();
+		}
+				
+		}
+
+		IEnumerator FadeScreenThenUnfade()
+	{
+		float fadeDuration = 0;
+		GameObject temp = (GameObject)Instantiate(mashSlash,new Vector3(0,0,0),Quaternion.Euler(0,0,0));
+		temp.transform.localScale = new Vector3(4,4,1);
+		GameObject temp2 = (GameObject)Instantiate(mashSlash,new Vector3(0,0,0),Quaternion.Euler(0,0,0));
+		temp2.transform.localScale = new Vector3(-4,4,1);
+		Invoke ("JudgeLevel", 2f);
+		while (fadeDuration < 1.1f)
+		{
+			fadeDuration += .1f;
+			float alpha = fadeDuration;
+			Color newA = new Color (fader.renderer.material.color.r, fader.renderer.material.color.g, fader.renderer.material.color.b, alpha);
+			fader.renderer.material.color = newA;
+			yield return new WaitForSeconds (.1f);
+		}
+		player.BroadcastMessage("Stop");
+		enemy.BroadcastMessage("Stop");
+		if (lvlComplete)
+		{
+			enemy.transform.Rotate(new Vector3(0,0,90));
+		}
+		else{
+			player.transform.Rotate(new Vector3(0,0,-90));
+		}
+	}
 
 		void OnGUI ()
 		{
