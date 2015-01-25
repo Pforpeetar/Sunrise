@@ -29,6 +29,8 @@ public class MovingEnemy : MonoBehaviour {
 			coll.BroadcastMessage("LevelDone");
 			coll.rigidbody2D.velocity = new Vector2(0,0);
 			run = false;
+			Animator playerAnimator = (Animator)coll.gameObject.GetComponent ("Animator");
+			playerAnimator.SetBool("Dead",true);
 			//Destroy(coll.gameObject, 1f);
 			audio.Play();
 			levMan.FailLevel();

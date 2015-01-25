@@ -53,11 +53,17 @@ public class TimedPress : MonoBehaviour {
 			animator.SetBool("Run",true);
 			animator.SetBool("Jump",false);
 		}
+		if (transform.position.y < -20)
+		{
+			lManager.FailLevel();
+			LevelDone();
+		}
 	}
 
 	void LevelDone()
 	{
 		levelDone = true;
+		cam.rigidbody2D.velocity = new Vector2 (0, 0);
 	}
 
 	void GroundSelf()
