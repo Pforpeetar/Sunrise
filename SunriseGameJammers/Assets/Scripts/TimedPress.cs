@@ -30,7 +30,7 @@ public class TimedPress : MonoBehaviour {
 		if (!levelDone)
 		{
 			rigidbody2D.velocity = new Vector2(speed,rigidbody2D.velocity.y);
-			if (Input.GetButtonDown("Action"))
+			if (Input.GetButtonDown("Action")&& grounded)
 			{
 				rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x,4);
 				grounded = false;
@@ -40,6 +40,7 @@ public class TimedPress : MonoBehaviour {
 			if (transform.position.x < cam.transform.position.x-5)
 			{
 				lManager.FailLevel();
+				cam.rigidbody2D.velocity = new Vector2(0,0);
 			}
 		}
 		if (grounded)

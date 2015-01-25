@@ -76,7 +76,7 @@ public class Mash : MonoBehaviour {
 		if (Input.GetButtonDown ("Action") && mashCheck) {
 			timesPressed++;
 			//Spawn prefab
-			Vector3 newPos = new Vector3 (Random.Range (-2.0f, 2.0f), Random.Range (-3.0f, -1.0f), -2.0f);
+			Vector3 newPos = new Vector3 (Random.Range (-2.0f, 2.0f), Random.Range (-3.0f, 0.0f), -2.0f);
 			Quaternion newRot = Quaternion.Euler (0, 0, Random.Range (0.0f, 360.0f));
 			Instantiate(mashSlash, newPos, newRot);
 			//Counter Debug
@@ -90,9 +90,11 @@ public class Mash : MonoBehaviour {
 				Color newA = new Color (fader.renderer.material.color.r, fader.renderer.material.color.g, fader.renderer.material.color.b, 0.0f);
 				fader.renderer.material.color = newA;
 
+
 				//Start moving enemies again (Control it here, I'm dumb and I don't know how to call other object's functions)
 				foreach (Transform enemy in enemies.gameObject.transform) {
 					enemy.gameObject.rigidbody2D.gravityScale = 1; //Re-enable gravity (I dont think this works anymore >_>)
+
 					//Enemies will fly toward the player on lose, away from player on win.
 					if (timesPressed >= pressesToWin) { //Win
 						//Get vector facing away from the player current position
