@@ -21,14 +21,14 @@ public class Mash : MonoBehaviour {
 	private float lowPitchRange = 0.75f;
 	private float highPitchRange = 1.5f;
 	private float lowVolRange = 0.8f;
-
+	private bool fading;
 	//I should be using Time.deltaTime instead...check shmup notes
 	public int timesPressed = 0;	//Counter for # of times pressed, public for camera
 	public float currentTime;		//public for camera
 	public float endTime;			//public for camera
 	private float startLightFade;
 	private float endLightFade;
-
+	public GUIStyle lol;
 	//Setup Timer
 	//Setup Fader
 	void Start () {
@@ -36,7 +36,7 @@ public class Mash : MonoBehaviour {
 		endTime = currentTime + mashDuration + 0.5f + fadeDuration; //Difference from endLightFade and endTime is 3.0 seconds
 		startLightFade = currentTime + 0.5f;
 		endLightFade = currentTime + 0.5f + fadeDuration;
-
+		fading = false;
 		Color newA = new Color (fader.renderer.material.color.r, fader.renderer.material.color.g, fader.renderer.material.color.b, 0.0f);
 		fader.renderer.material.color = newA;
 	}
@@ -53,6 +53,7 @@ public class Mash : MonoBehaviour {
 		//We have t range from 0 to fadeDuration, but it needs to be scaled to a 0 to 1 range
 		//1/fadeDuration * (currentTime - startLightFade)
 		if (currentTime > startLightFade && currentTime < endLightFade) {
+			fading = true;
 			float alpha = (1/fadeDuration) * (currentTime - startLightFade); //Never a negative number thankts to currentTime > startLightFade
 			Color newA = new Color (fader.renderer.material.color.r, fader.renderer.material.color.g, fader.renderer.material.color.b, alpha);
 			fader.renderer.material.color = newA;
@@ -142,7 +143,18 @@ public class Mash : MonoBehaviour {
 			else {
 				lvlmanager.FailLevel();
 			}
+		}}
+
+	void OnGUI()
+	{
+		if (fading) {
+			GUI.Label(new Rect(Screen.width -70,Screen.height-70,50,50), ""+timesPressed,lol);
 		}
 	}
+		/*void OnGUI()
+		{
+			if (fading) {GUI.Label(new Rect(Screen.width -60,Screen.height-60,50,50), timesPressed,Utilities.LevelDisplay(null)));
+		}}*/
+	}
 
-}
+
