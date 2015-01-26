@@ -21,6 +21,9 @@ public class QTE : MonoBehaviour
 		private bool peterYoucanOnlyPressItOnceForThisStage;
 		public AudioClip slash;
 		public AudioClip death;
+		private bool levelComplete;
+		private bool levelFailed;
+	public GUIStyle displayStyle;
 		// Use this for initialization
 		void Start ()
 		{
@@ -33,6 +36,8 @@ public class QTE : MonoBehaviour
 				fader.renderer.material.color = newA;
 				fadeActive = false;
 				peterYoucanOnlyPressItOnceForThisStage = true;
+		levelComplete = false;
+		levelFailed = false;
 		}
 	
 		// Update is called once per frame
@@ -60,9 +65,11 @@ public class QTE : MonoBehaviour
 		void JudgeLevel ()
 		{
 				if (lvlComplete) {
-						lManager.CompleteLevel ();
+						lManager.CompleteLevel (false);
+			levelComplete = true;
 				} else {
-						lManager.FailLevel ();
+						lManager.FailLevel (false);
+			levelFailed = true;
 				}
 				
 		}
@@ -111,5 +118,16 @@ public class QTE : MonoBehaviour
 				if (QTEactive) {
 						GUI.Label (new Rect (Screen.width / 4, Screen.height / 30, Screen.width / 2, Screen.height / 10), "ACT NOW", Utilities.LevelDisplay (null));
 				}
+		if (levelComplete) {
+			GUI.Label (new Rect (Screen.width/4, Screen.height/30, Screen.width/2, Screen.height/10), "Level Complete!",displayStyle);
+			//GUI.Label (new Rect (Screen.width/4, Screen.height - Screen.height/30, Screen.width/2, Screen.height/100), "Press Action to Advance...",displayStyle);
+			GUI.Label (new Rect (Screen.width/4, 3*Screen.height/30, Screen.width/2, Screen.height/100), "Press Action to Advance...",displayStyle);
+			
+		}
+		if (levelFailed) {
+			GUI.Label (new Rect (Screen.width/4, Screen.height/30, Screen.width/2, Screen.height/100), "Level Failed...",displayStyle);
+			GUI.Label (new Rect (Screen.width/4, 3* Screen.height/30, Screen.width/2, Screen.height/100), "Press Action to Try Again.",displayStyle);
+			
+		}
 		}
 }
