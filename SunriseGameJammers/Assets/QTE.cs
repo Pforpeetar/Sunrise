@@ -119,7 +119,7 @@ public class QTE : MonoBehaviour
 						GUI.Label (new Rect (Screen.width / 4, Screen.height / 30, Screen.width / 2, Screen.height / 10), "ACT NOW", Utilities.LevelDisplay (null));
 				}
 		if (levelComplete) {
-			GUI.Label (new Rect (Screen.width/4, Screen.height/30, Screen.width/2, Screen.height/10), "Level Complete!",displayStyle);
+			GUI.Label (new Rect (Screen.width/4, Screen.height/30, Screen.width/2, Screen.height/100), "Level Complete!",displayStyle);
 			//GUI.Label (new Rect (Screen.width/4, Screen.height - Screen.height/30, Screen.width/2, Screen.height/100), "Press Action to Advance...",displayStyle);
 			GUI.Label (new Rect (Screen.width/4, 3*Screen.height/30, Screen.width/2, Screen.height/100), "Press Action to Advance...",displayStyle);
 			

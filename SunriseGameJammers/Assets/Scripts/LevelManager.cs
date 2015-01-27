@@ -61,14 +61,14 @@ public class LevelManager : MonoBehaviour
 		void OnGUI ()
 		{
 				if (levelComplete && drawstuff) {
-						GUI.Label (new Rect (Screen.width/4, Screen.height/30, Screen.width/2, Screen.height/10), "Level Complete!",displayStyle);
+						GUI.Label (new Rect (Screen.width/4, Screen.height/30, Screen.width/2, Screen.height/100), "Level Complete!",displayStyle);
 			//GUI.Label (new Rect (Screen.width/4, Screen.height - Screen.height/30, Screen.width/2, Screen.height/100), "Press Action to Advance...",displayStyle);
-			GUI.Label (new Rect (Screen.width/4, 4*	Screen.height/30, Screen.width/2, Screen.height/100), "Press Action to Advance...",displayStyle);
+			GUI.Label (new Rect (Screen.width/4, 3*	Screen.height/30, Screen.width/2, Screen.height/100), "Press Action to Advance...",displayStyle);
 
 		}
 				if (levelFailed&& drawstuff) {
 			GUI.Label (new Rect (Screen.width/4, Screen.height/30, Screen.width/2, Screen.height/100), "Level Failed...",displayStyle);
-			GUI.Label (new Rect (Screen.width/4, 4* Screen.height/30, Screen.width/2, Screen.height/100), "Press Action to Try Again.",displayStyle);
+			GUI.Label (new Rect (Screen.width/4, 3* Screen.height/30, Screen.width/2, Screen.height/100), "Press Action to Try Again.",displayStyle);
 
 		}
 		}
