@@ -1,4 +1,4 @@
-# Clown Runner
+# Samurai 13
 
 Only has a Windows version.
 
