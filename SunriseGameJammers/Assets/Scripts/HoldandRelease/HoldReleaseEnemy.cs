@@ -14,8 +14,8 @@ public class HoldReleaseEnemy : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (run) {
-			rigidbody2D.velocity = new Vector2 (speed, 0);
-			if (rigidbody2D.velocity.x != 0) {
+			GetComponent<Rigidbody2D>().velocity = new Vector2 (speed, 0);
+			if (GetComponent<Rigidbody2D>().velocity.x != 0) {
 				animator.SetBool ("Run", true);
 				}
 			}
@@ -24,16 +24,16 @@ public class HoldReleaseEnemy : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D coll) {
 		if (coll.gameObject.CompareTag ("Projectile")) {
 			Destroy(coll.gameObject);
-			rigidbody2D.velocity = new Vector2(0, 0);
-			gameObject.collider2D.enabled = false;
+			GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
+			gameObject.GetComponent<Collider2D>().enabled = false;
 			run = false;
-			audio.Play();
+			GetComponent<AudioSource>().Play();
 			animator.SetBool("Dead", true);
 			Destroy (gameObject, 1f);
 		} 
 		if (Utilities.hasMatchingTag(Tag.Player, coll.gameObject)) {
 			animator.SetBool("Slash", true);
-			rigidbody2D.velocity = new Vector2(0, 0);
+			GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
 			run = false;
 			Destroy(coll.gameObject, 1f);
 			levMan.FailLevel();

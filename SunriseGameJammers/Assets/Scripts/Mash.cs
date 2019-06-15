@@ -37,8 +37,8 @@ public class Mash : MonoBehaviour {
 		startLightFade = currentTime + 0.5f;
 		endLightFade = currentTime + 0.5f + fadeDuration;
 		fading = false;
-		Color newA = new Color (fader.renderer.material.color.r, fader.renderer.material.color.g, fader.renderer.material.color.b, 0.0f);
-		fader.renderer.material.color = newA;
+		Color newA = new Color (fader.GetComponent<Renderer>().material.color.r, fader.GetComponent<Renderer>().material.color.g, fader.GetComponent<Renderer>().material.color.b, 0.0f);
+		fader.GetComponent<Renderer>().material.color = newA;
 	}
 	
 	// Update is called once per frame
@@ -55,8 +55,8 @@ public class Mash : MonoBehaviour {
 		if (currentTime > startLightFade && currentTime < endLightFade) {
 			fading = true;
 			float alpha = (1/fadeDuration) * (currentTime - startLightFade); //Never a negative number thankts to currentTime > startLightFade
-			Color newA = new Color (fader.renderer.material.color.r, fader.renderer.material.color.g, fader.renderer.material.color.b, alpha);
-			fader.renderer.material.color = newA;
+			Color newA = new Color (fader.GetComponent<Renderer>().material.color.r, fader.GetComponent<Renderer>().material.color.g, fader.GetComponent<Renderer>().material.color.b, alpha);
+			fader.GetComponent<Renderer>().material.color = newA;
 		}
 
 		//Lights out, Allowed to mash when currentTime is within 3 seconds of the endTime
@@ -65,15 +65,15 @@ public class Mash : MonoBehaviour {
 		if (endTime - currentTime < mashDuration && endTime - currentTime > 0.0f) {
 			mashCheck = true;
 			//Last transparency check on fader, make sure it is opaque
-			if (fader.renderer.material.color.a != 1.0f) {
-				Color newA = new Color (fader.renderer.material.color.r, fader.renderer.material.color.g, fader.renderer.material.color.b, 1.0f);
-				fader.renderer.material.color = newA;
+			if (fader.GetComponent<Renderer>().material.color.a != 1.0f) {
+				Color newA = new Color (fader.GetComponent<Renderer>().material.color.r, fader.GetComponent<Renderer>().material.color.g, fader.GetComponent<Renderer>().material.color.b, 1.0f);
+				fader.GetComponent<Renderer>().material.color = newA;
 			}
 			//For each enemy, stop their momentum
 			//ATM, empty gameObject called enemies holds enemy1, enemy2, etc...
 			foreach (Transform enemy in enemies.gameObject.transform) {
-				enemy.gameObject.rigidbody2D.velocity = Vector2.zero;
-				enemy.gameObject.rigidbody2D.gravityScale = 0; //Disable gravity on them
+				enemy.gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+				enemy.gameObject.GetComponent<Rigidbody2D>().gravityScale = 0; //Disable gravity on them
 			}
 		}
 
@@ -89,22 +89,22 @@ public class Mash : MonoBehaviour {
 			//Counter Debug
 			Debug.Log (timesPressed);
 			//SFX
-			audio.pitch = Random.Range (lowPitchRange,highPitchRange);
+			GetComponent<AudioSource>().pitch = Random.Range (lowPitchRange,highPitchRange);
 			float hitVol = Random.Range (lowVolRange, 1.0f);
-			audio.PlayOneShot(slashSFX,hitVol);
+			GetComponent<AudioSource>().PlayOneShot(slashSFX,hitVol);
 		}
 
 		//Akuma mode ended, lights back on
 		if (currentTime > endTime) {
 			//When lights go back on, give the enemies momentum as well, depends on win or lose
-			if (fader.renderer.material.color.a != 0.0f) {
-				Color newA = new Color (fader.renderer.material.color.r, fader.renderer.material.color.g, fader.renderer.material.color.b, 0.0f);
-				fader.renderer.material.color = newA;
+			if (fader.GetComponent<Renderer>().material.color.a != 0.0f) {
+				Color newA = new Color (fader.GetComponent<Renderer>().material.color.r, fader.GetComponent<Renderer>().material.color.g, fader.GetComponent<Renderer>().material.color.b, 0.0f);
+				fader.GetComponent<Renderer>().material.color = newA;
 
 
 				//Start moving enemies again (Control it here, I'm dumb and I don't know how to call other object's functions)
 				foreach (Transform enemy in enemies.gameObject.transform) {
-					enemy.gameObject.rigidbody2D.gravityScale = 1; //Re-enable gravity (I dont think this works anymore >_>)
+					enemy.gameObject.GetComponent<Rigidbody2D>().gravityScale = 1; //Re-enable gravity (I dont think this works anymore >_>)
 
 					//Enemies will fly toward the player on lose, away from player on win.
 					if (timesPressed >= pressesToWin) { //Win
@@ -112,13 +112,13 @@ public class Mash : MonoBehaviour {
 						//enemyPosition - playerPosition
 						Vector2 newDir = enemy.gameObject.transform.position - transform.position;
 						newDir.Normalize ();
-						enemy.gameObject.rigidbody2D.AddForce(newDir * winForce);
+						enemy.gameObject.GetComponent<Rigidbody2D>().AddForce(newDir * winForce);
 						//Add torque, enemy on left side gets positive torque
 						if (enemy.gameObject.transform.position.x < 0) {
-							enemy.gameObject.rigidbody2D.AddTorque(winForceSpin);
+							enemy.gameObject.GetComponent<Rigidbody2D>().AddTorque(winForceSpin);
 						}
 						else {
-							enemy.gameObject.rigidbody2D.AddTorque(-winForceSpin);
+							enemy.gameObject.GetComponent<Rigidbody2D>().AddTorque(-winForceSpin);
 						}
 
 					}
@@ -127,7 +127,7 @@ public class Mash : MonoBehaviour {
 						//playerPosition - enemyPosition
 						Vector2 newDir = transform.position - enemy.gameObject.transform.position;
 						newDir.Normalize ();
-						enemy.gameObject.rigidbody2D.AddForce(newDir * winForce);
+						enemy.gameObject.GetComponent<Rigidbody2D>().AddForce(newDir * winForce);
 					}
 				}
 			}

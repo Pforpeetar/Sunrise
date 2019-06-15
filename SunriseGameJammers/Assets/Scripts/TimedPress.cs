@@ -14,14 +14,14 @@ public class TimedPress : MonoBehaviour {
 	public AudioClip jump;
 	// Use this for initialization
 	void Start () {
-		rigidbody2D.velocity = new Vector2(speed,rigidbody2D.velocity.y);
+		GetComponent<Rigidbody2D>().velocity = new Vector2(speed,GetComponent<Rigidbody2D>().velocity.y);
 		animator = (Animator)GetComponent ("Animator");
 		animator.SetBool("Run", true);
 		if (cam != null)
 		{
-			if (cam.rigidbody2D)
+			if (cam.GetComponent<Rigidbody2D>())
 			{
-				cam.rigidbody2D.velocity = new Vector2(speed,0);
+				cam.GetComponent<Rigidbody2D>().velocity = new Vector2(speed,0);
 			}
 		}
 		levelDone = false;
@@ -32,20 +32,20 @@ public class TimedPress : MonoBehaviour {
 	void Update () {
 		if (!levelDone)
 		{
-			rigidbody2D.velocity = new Vector2(speed,rigidbody2D.velocity.y);
+			GetComponent<Rigidbody2D>().velocity = new Vector2(speed,GetComponent<Rigidbody2D>().velocity.y);
 			if (Input.GetButtonDown("Action")&& grounded)
 			{
-				rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x,4);
+				GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x,4);
 				grounded = false;
 				animator.SetBool("Run",false);
 				animator.SetBool("Jump",true);
-				audio.pitch = Random.Range (lowPitchRange,highPitchRange);
-				audio.PlayOneShot(jump);
+				GetComponent<AudioSource>().pitch = Random.Range (lowPitchRange,highPitchRange);
+				GetComponent<AudioSource>().PlayOneShot(jump);
 			}
 			if (transform.position.x < cam.transform.position.x-5)
 			{
 				lManager.FailLevel();
-				cam.rigidbody2D.velocity = new Vector2(0,0);
+				cam.GetComponent<Rigidbody2D>().velocity = new Vector2(0,0);
 			}
 		}
 		if (grounded)
@@ -63,7 +63,7 @@ public class TimedPress : MonoBehaviour {
 	void LevelDone()
 	{
 		levelDone = true;
-		cam.rigidbody2D.velocity = new Vector2 (0, 0);
+		cam.GetComponent<Rigidbody2D>().velocity = new Vector2 (0, 0);
 	}
 
 	void GroundSelf()

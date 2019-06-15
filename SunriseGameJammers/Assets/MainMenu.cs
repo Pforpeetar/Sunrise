@@ -21,13 +21,13 @@ public class MainMenu : MonoBehaviour {
 		}
 		if (Input.GetButtonDown("Action"))
 		{
-			audio.Play();
+			GetComponent<AudioSource>().Play();
 			Invoke("NextLevel",1);
 			InvokeRepeating("TryFlickerEffect",0,.075f);
 		}
 		if (Input.GetButtonDown("Credits"))
 		{
-			audio.Play();
+			GetComponent<AudioSource>().Play();
 			Invoke("GoToCredits",1);
 			InvokeRepeating("TryFlickerEffect2",0,.075f);
 

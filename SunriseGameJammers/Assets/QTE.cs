@@ -32,8 +32,8 @@ public class QTE : MonoBehaviour
 				QTEactive = false;
 				lvlComplete = false;
 				upperBoundsTime = QTEresponseTime + timeBeforeQTE + humanLeniency;
-				Color newA = new Color (fader.renderer.material.color.r, fader.renderer.material.color.g, fader.renderer.material.color.b, 0.0f);
-				fader.renderer.material.color = newA;
+				Color newA = new Color (fader.GetComponent<Renderer>().material.color.r, fader.GetComponent<Renderer>().material.color.g, fader.GetComponent<Renderer>().material.color.b, 0.0f);
+				fader.GetComponent<Renderer>().material.color = newA;
 				fadeActive = false;
 				peterYoucanOnlyPressItOnceForThisStage = true;
 		levelComplete = false;
@@ -79,10 +79,10 @@ public class QTE : MonoBehaviour
 				float fadeDuration = 0;
 				GameObject temp = (GameObject)Instantiate (mashSlash, new Vector3 (0, 0, 0), Quaternion.Euler (0, 0, 0));
 				temp.transform.localScale = new Vector3 (4, 4, 1);
-				if (audio&&slash)
+				if (GetComponent<AudioSource>()&&slash)
 				{
-					audio.PlayOneShot(slash,1);
-					audio.PlayOneShot(slash,1);
+					GetComponent<AudioSource>().PlayOneShot(slash,1);
+					GetComponent<AudioSource>().PlayOneShot(slash,1);
 				}
 				GameObject temp2 = (GameObject)Instantiate (mashSlash, new Vector3 (0, 0, 0), Quaternion.Euler (0, 0, 0));
 				temp2.transform.localScale = new Vector3 (-4, 4, 1);
@@ -90,16 +90,16 @@ public class QTE : MonoBehaviour
 				while (fadeDuration < 1.1f) {
 						fadeDuration += .1f;
 						float alpha = fadeDuration;
-						Color newA = new Color (fader.renderer.material.color.r, fader.renderer.material.color.g, fader.renderer.material.color.b, alpha);
-						fader.renderer.material.color = newA;
+						Color newA = new Color (fader.GetComponent<Renderer>().material.color.r, fader.GetComponent<Renderer>().material.color.g, fader.GetComponent<Renderer>().material.color.b, alpha);
+						fader.GetComponent<Renderer>().material.color = newA;
 						yield return new WaitForSeconds (.1f);
 				}
 				player.BroadcastMessage ("Stop");
 				enemy.BroadcastMessage ("Stop");
-				if (audio && death)
+				if (GetComponent<AudioSource>() && death)
 				{
-					audio.PlayOneShot(death,.3f);
-					audio.PlayOneShot(death,.3f);
+					GetComponent<AudioSource>().PlayOneShot(death,.3f);
+					GetComponent<AudioSource>().PlayOneShot(death,.3f);
 				}
 				if (lvlComplete) {
 						//enemy.transform.Rotate (new Vector3 (0, 0, 90));

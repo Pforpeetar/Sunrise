@@ -42,7 +42,7 @@ public class HoldRelease : MonoBehaviour {
 		//Once arrow/action button is release, trigger shooting animation and fire a projectile
 		if (Input.GetButtonUp ("Action")) {
 			animator.SetBool("Shoot", true);
-			audio.Play();
+			GetComponent<AudioSource>().Play();
 			if (slideAmount < minArea - areaOffset) {
 				launchProjectile(5f, -1f, 2f);
 				slideAmount = 0;
@@ -80,8 +80,8 @@ public class HoldRelease : MonoBehaviour {
 	void launchProjectile(float xVel, float yVel, float gScale) {
 		//spawns projectile at location of script's gameobject
 		curryInstance = (GameObject)GameObject.Instantiate (curryWeapon, new Vector3(gameObject.transform.position.x, gameObject.transform.position.y + 0.5f), Quaternion.identity);
-		curryInstance.rigidbody2D.velocity = new Vector2(xVel, yVel);
-		curryInstance.rigidbody2D.gravityScale = gScale;
+		curryInstance.GetComponent<Rigidbody2D>().velocity = new Vector2(xVel, yVel);
+		curryInstance.GetComponent<Rigidbody2D>().gravityScale = gScale;
 		Destroy(curryInstance, 2f);
 	}
 

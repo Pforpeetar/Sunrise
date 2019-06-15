@@ -23,7 +23,7 @@ public class BGMPlayer : MonoBehaviour {
 
 	void OnLevelWasLoaded(int level)
 	{
-		if (audio == null) {return;}
+		if (GetComponent<AudioSource>() == null) {return;}
 		AudioClip newClip;
 		if(mainThemeStages.Contains(Application.loadedLevelName))
 		{
@@ -33,10 +33,10 @@ public class BGMPlayer : MonoBehaviour {
 		{
 			newClip = stageMusic;
 		}
-		if (audio.clip != newClip)
+		if (GetComponent<AudioSource>().clip != newClip)
 		{
-			audio.clip = newClip;
-			audio.Play();
+			GetComponent<AudioSource>().clip = newClip;
+			GetComponent<AudioSource>().Play();
 		}
 	}
 	// Update is called once per frame

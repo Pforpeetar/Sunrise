@@ -22,9 +22,9 @@ public class Exit : MonoBehaviour
 				if (Utilities.hasMatchingTag (Tag.Player, collInfo.gameObject)) {
 						lManager.CompleteLevel ();
 						collInfo.BroadcastMessage("LevelDone");
-						collInfo.gameObject.rigidbody2D.velocity = new Vector2 (0, 0);
-						if (mainCamera.rigidbody2D) {
-								mainCamera.rigidbody2D.velocity = new Vector2 (0, 0);
+						collInfo.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2 (0, 0);
+						if (mainCamera.GetComponent<Rigidbody2D>()) {
+								mainCamera.GetComponent<Rigidbody2D>().velocity = new Vector2 (0, 0);
 						}
 
 				}

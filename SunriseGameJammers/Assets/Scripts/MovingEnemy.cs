@@ -15,8 +15,8 @@ public class MovingEnemy : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (run) {
-			rigidbody2D.velocity = new Vector2 (speed, 0);
-			if (rigidbody2D.velocity.x != 0) {
+			GetComponent<Rigidbody2D>().velocity = new Vector2 (speed, 0);
+			if (GetComponent<Rigidbody2D>().velocity.x != 0) {
 				animator.SetBool ("Run", true);
 			}
 		}
@@ -25,14 +25,14 @@ public class MovingEnemy : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D coll) {
 		if (Utilities.hasMatchingTag(Tag.Player, coll.gameObject)) {
 			animator.SetBool("Slash", true);
-			rigidbody2D.velocity = new Vector2(0, 0);
+			GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
 			coll.BroadcastMessage("LevelDone");
-			coll.rigidbody2D.velocity = new Vector2(0,0);
+			coll.GetComponent<Rigidbody2D>().velocity = new Vector2(0,0);
 			run = false;
 			Animator playerAnimator = (Animator)coll.gameObject.GetComponent ("Animator");
 			playerAnimator.SetBool("Dead",true);
 			//Destroy(coll.gameObject, 1f);
-			audio.Play();
+			GetComponent<AudioSource>().Play();
 			levMan.FailLevel();
 		}
 	}

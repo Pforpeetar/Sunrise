@@ -14,11 +14,11 @@ public class Velocity : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (!shouldStop) {
-	rigidbody2D.velocity = new Vector2(velocity,0);
+	GetComponent<Rigidbody2D>().velocity = new Vector2(velocity,0);
 		animator = (Animator)GetComponent ("Animator");
-		if (rigidbody2D.velocity.x > 0) {
+		if (GetComponent<Rigidbody2D>().velocity.x > 0) {
 				animator.SetBool("Run", true);
-			} else if (rigidbody2D.velocity.x < 0) {
+			} else if (GetComponent<Rigidbody2D>().velocity.x < 0) {
 				animator.SetBool("eRun", true);
 			}
 		}
@@ -27,7 +27,7 @@ public class Velocity : MonoBehaviour {
 	void Stop()
 	{
 		shouldStop = true;
-		rigidbody2D.velocity = new Vector2(0,0);
+		GetComponent<Rigidbody2D>().velocity = new Vector2(0,0);
 		animator.SetBool("Run", false);
 		animator.SetBool("eRun", false);
 	}
