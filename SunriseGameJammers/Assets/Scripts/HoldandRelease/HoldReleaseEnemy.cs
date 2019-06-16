@@ -37,9 +37,11 @@ public class HoldReleaseEnemy : MonoBehaviour {
 			m_AudioSource.Play();
 			animator.SetBool("Dead", true);
 			Destroy (gameObject, 1f);
-		} 
+		}
+        if (!run) { return; } //use run as a flag of if the player is dead and level is over 
 		if (Utilities.hasMatchingTag(Tag.Player, coll.gameObject)) {
 			animator.SetBool("Slash", true);
+            GetComponent<AudioSource>().Play();
             Invoke("StopSlashing", .25f);
 			m_RigidBody.velocity = new Vector2(0, 0);
 			run = false;
